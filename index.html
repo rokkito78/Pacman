@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+        body {
+            background-color: black;
+            margin: 0px;
+        }
+        
+        .row {
+            font-size: 0px;
+        }
+        
+        div.row div {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+        }
+        
+        div.brick {
+            background-color: blue;
+        }
+        
+        div.coin {
+            background-image: url("coin.gif");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        div#pacman {
+            background-image: url("pacman.gif");
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: absolute;
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+    <title>Pacman</title>
+</head>
+
+<body>
+    <div id="container">
+        <div id="world"></div>
+        <div id="pacman" style="top: 20px; left: 20px;"></div>
+    </div>
+    <script>
+        var world = [
+            [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+            [2, 1, 1, 2, 1, 1, 1, 1, 1, 2],
+            [2, 1, 1, 2, 2, 2, 2, 1, 1, 2],
+            [2, 1, 1, 2, 1, 1, 1, 1, 1, 2],
+            [2, 1, 1, 2, 2, 2, 1, 1, 1, 2],
+            [2, 1, 1, 2, 2, 2, 1, 1, 1, 2],
+            [2, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+            [2, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+            [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+        ];
+        var pacman = {
+            x: 20,
+            y: 20
+        }
+
+        function displaymundo() {
+            var salida = '';
+            for (var i = 0; i < world.length; i++) {
+                salida += "\n<div class='row'\n>";
+                for (var j = 0; j < world[i].length; j++) {
+                    if (world[i][j] == 2)
+                        salida += "<div class = 'brick'></div>";
+                    else if (world[i][j] == 1)
+                        salida += "<div class = 'coin'></div>";
+                    if (world[i][j] == 0)
+                        salida += "<div class = 'empty'></div>";
+                }
+                salida += "\n</div>";
+            }
+            //console.log(salida);
+            document.getElementById("world").innerHTML = salida;
+        }
+
+        function displayPacman() {
+            document.getElementById("pacman").style.top = pacman.x = 50 + "px";
+            document.getElementById("pacman").style.left = pacman.x = 50 + "px";
+        }
+
+        displaymundo();
+        displayPacman();
+        document.onkeydown = function(e) {
+            if (e.keyCode == 37) {
+                document.getElementById("pacman").style.left = 50 + "px";
+            }
+            console.log(e.keyCode);
+        }
+    </script>
+
+
+
+</body>
+
+</html>
